@@ -1,0 +1,101 @@
+﻿<Window x:Class="Xavian.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Xavian"
+        xmlns:viewModel="clr-namespace:Xavian.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="#FFFFFF"
+            CornerRadius="20"
+            BorderBrush="Goldenrod"
+            BorderThickness="1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="Goldenrod" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+            <Border BorderBrush="Goldenrod" BorderThickness="0,0,0,1" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
+
+            <TextBlock Text="Xavian"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="Goldenrod"
+                       FontSize="22"
+                       Margin="20,0,0,0"
+                       FontFamily="/Fonts/#Poppins"/>
+
+            <StackPanel Grid.Row="1">
+
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="Goldenrod"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+
+                <RadioButton Content="Discovery"
+                             Height="50"
+                             Foreground="Goldenrod"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DiscoveryViewCommand}"/>
+
+                <RadioButton Content="Featured"
+                             Height="50"
+                             Foreground="Goldenrod"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding FeaturedViewCommand}"/>
+            </StackPanel>
+
+            <TextBox Width="250"
+                     Height="40"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="5"
+                     Grid.Column="1"
+                     Style="{StaticResource TextboxTheme}"/>
+
+
+            <!-- Close Button in top right corner of the window -->
+            <Button Content="X"
+                    Width="30"
+                    Height="30"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Margin="0,10,10,0"
+                    Background="Transparent"
+                    Foreground="Goldenrod"
+                    BorderBrush="Transparent"
+                    FontWeight="Bold"
+                    Click="CloseButton_Click"
+                    Grid.ColumnSpan="2"/>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+    </Border>
+</Window>
